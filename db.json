@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": "9cd6",
+      "name": "asdad",
+      "lastName": "sa",
+      "email": "asda@da.asd",
+      "password": "adsa"
+    },
+    {
+      "id": "0997",
+      "name": "Martina",
+      "lastName": "Petkovic",
+      "email": "martina@email.com",
+      "password": "caocao"
+    },
+    {
+      "id": "1456",
+      "name": "Marta",
+      "lastName": "Mart",
+      "email": "mart@gmail.com",
+      "password": "123"
+    }
+  ]
+}
