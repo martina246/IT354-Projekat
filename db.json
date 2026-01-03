@@ -20,6 +20,39 @@
       "lastName": "Mart",
       "email": "mart@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "d93c",
+      "name": "Test",
+      "lastName": "Test",
+      "email": "test@gmail.com",
+      "password": "test123"
+    }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "userId": "1456",
+      "title": "Problem sa prijavom",
+      "description": "Ne mogu da se prijavim na sistem",
+      "status": "open",
+      "createdAt": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": "1456",
+      "title": "Zahtev za reset lozinke",
+      "description": "Zaboravila sam lozinku",
+      "status": "in_progress",
+      "createdAt": "2024-01-14T14:20:00Z"
+    },
+    {
+      "id": 3,
+      "userId": "1456",
+      "title": "Bug u aplikaciji",
+      "description": "Aplikacija se ruši pri otvaranju",
+      "status": "closed",
+      "createdAt": "2024-01-13T09:15:00Z"
     }
   ]
 }
