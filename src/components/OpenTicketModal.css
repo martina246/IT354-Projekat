@@ -1,0 +1,58 @@
+.ticket-details-modal {
+    max-width: 600px;
+}
+
+.ticket-details-content {
+    margin-bottom: 1.5rem;
+}
+
+.ticket-detail-section {
+    margin-bottom: 1.5rem;
+}
+
+.ticket-detail-label {
+    display: block;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ticket-detail-value {
+    color: #333;
+    font-size: 1rem;
+    padding: 0.5rem 0;
+}
+
+.ticket-description {
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.ticket-status-badge {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.ticket-status-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    color: #333;
+    background-color: #fff;
+}
+
+.ticket-id {
+    font-family: monospace;
+    color: #999;
+    font-size: 0.875rem;
+}

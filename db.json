@@ -31,7 +31,7 @@
   ],
   "tickets": [
     {
-      "id": 1,
+      "id": "1",
       "userId": "1456",
       "title": "Problem sa prijavom",
       "description": "Ne mogu da se prijavim na sistem",
@@ -39,7 +39,7 @@
       "createdAt": "2024-01-15T10:30:00Z"
     },
     {
-      "id": 2,
+      "id": "2",
       "userId": "1456",
       "title": "Zahtev za reset lozinke",
       "description": "Zaboravila sam lozinku",
@@ -47,12 +47,20 @@
       "createdAt": "2024-01-14T14:20:00Z"
     },
     {
-      "id": 3,
+      "id": "3",
       "userId": "1456",
       "title": "Bug u aplikaciji",
       "description": "Aplikacija se ruši pri otvaranju",
       "status": "closed",
       "createdAt": "2024-01-13T09:15:00Z"
+    },
+    {
+      "id": "9070",
+      "userId": "1456",
+      "title": "test",
+      "description": "test",
+      "status": "in_progress",
+      "createdAt": "2026-01-05T15:13:44.336Z"
     }
   ]
 }
