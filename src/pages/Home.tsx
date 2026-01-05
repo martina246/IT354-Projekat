@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "./Home.css";
 
 
 interface Ticket {
@@ -68,15 +69,6 @@ function Home() {
     const lastThreeTickets = tickets.slice(0, 3);
     //3 najnovija
 
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case 'open': return '#ff6b6b';
-            case 'in_progress': return '#4ecdc4';
-            case 'closed': return "#95e1d3";
-            default: return '#ccc';
-        }
-    };
-
     const getStatusLabel = (status: string) => {
         switch (status) {
             case 'open': return 'Open';
@@ -87,7 +79,7 @@ function Home() {
     }
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="home-loading">Loading...</div>;
     }
 
     if (!user) {
@@ -97,84 +89,85 @@ function Home() {
 
 
     return (
-        <div>
-            
+        <div className="home-container">
+            {/* sidebar */}
+            <aside className="home-sidebar">
+                <nav>
+                    <h2>Help Desk</h2>
+                    <ul>
+                        <li>
+                            <Link to="/home">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/tickets">My tickets</Link>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
 
-            <div>
-                <aside>
-                    <nav>
-                        <h2>Help Desk</h2>
-                        <ul>
-                            <li>
-                                <Link to="/home">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/tickets">My tickets</Link>
-                            </li>
-                        </ul>
-                    </nav>
-                </aside>
-            </div>
+            {/* main */}
+            <main className="home-main">
+                <h1 className="home-welcome">Dobro dosli, {user.name} {user.lastName}!</h1>
 
-            
-            <main style={{ flex: 1, padding: '2rem' }}>
-                <h1>Dobro dosli, {user.name} {user.lastName}!</h1>
-
-                <div>
+                {/* quick actions */}
+                <div className="home-quick-actions">
                     <h2>Brze akcije</h2>
-                    <div>
-                        <button onClick={() => navigate('/create-ticket')}>Kreiraj novi tiket</button>
-                        <button onClick={() => navigate('/tickets')}>Moji tiketi</button>
+                    <div className="home-actions-buttons">
+                        <button 
+                            onClick={() => navigate('/create-ticket')}
+                            className="home-action-button home-action-button-primary"
+                        >
+                            Kreiraj novi tiket
+                        </button>
+                        <button 
+                            onClick={() => navigate('/tickets')}
+                            className="home-action-button home-action-button-secondary"
+                        >
+                            Moji tiketi
+                        </button>
                     </div>
                 </div>
 
-                <div>
+                {/* summary */}
+                <div className="home-summary">
                     <h2>Sazetak</h2>
-
-                    <div>
-                        <div>
+                    <div className="home-summary-grid">
+                        <div className="home-summary-card open">
                             <h3>Open</h3>
-                            <p>{openCount}</p>
+                            <p className="home-summary-count">{openCount}</p>
                         </div>
-                    </div>
-
-                    <div>
-                        <div>
+                        <div className="home-summary-card in-progress">
                             <h3>In progress</h3>
-                            <p>{inProgressCount}</p>
+                            <p className="home-summary-count">{inProgressCount}</p>
                         </div>
-                    </div>
-
-                    <div>
-                        <div>
+                        <div className="home-summary-card closed">
                             <h3>Closed</h3>
-                            <p>{closedCount}</p>
+                            <p className="home-summary-count">{closedCount}</p>
                         </div>
                     </div>
-
                 </div>
 
-                <div>
+                {/* poslednja 3 tiketa */}
+                <div className="home-last-tickets">
                     <h2>Poslednja 3 tiketa</h2>
                     {lastThreeTickets.length === 0 ? (
-                        <p>Nemate tiketa</p>
+                        <p className="home-empty-message">Nemate tiketa</p>
                     ) : (
-                        <div>
+                        <div className="home-tickets-list">
                             {lastThreeTickets.map((ticket) => (
-                                <div key={ticket.id} style={{borderLeft: `4px solid ${getStatusColor(ticket.status)}`}}>
-                                    <div>
-                                        <div>
+                                <div 
+                                    key={ticket.id} 
+                                    className={`home-ticket-card ${ticket.status === 'in_progress' ? 'in-progress' : ticket.status}`}
+                                >
+                                    <div className="home-ticket-content">
+                                        <div className="home-ticket-info">
                                             <h3>{ticket.title}</h3>
-                                            <p>
-                                                {ticket.description}
-                                            </p>
+                                            <p>{ticket.description}</p>
                                             <small>
                                                 {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
                                             </small>
                                         </div>
-                                        <span style={{
-                                            backgroundColor: getStatusColor(ticket.status),
-                                        }}>
+                                        <span className={`home-ticket-status ${ticket.status === 'in_progress' ? 'in-progress' : ticket.status}`}>
                                             {getStatusLabel(ticket.status)}
                                         </span>
                                     </div>
@@ -184,8 +177,6 @@ function Home() {
                     )}
                 </div>
             </main>
-
-
         </div>
     )
 
