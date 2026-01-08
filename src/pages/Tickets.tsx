@@ -4,22 +4,10 @@ import { useNavigate, Link } from "react-router-dom";
 import CreateTicketModal from "../components/CreateTicketModal";
 import OpenTicketModal from "../components/OpenTicketModal";
 import "./Tickets.css";
+import type { Ticket } from '../types/Ticket';
+import type { User } from '../types/User';
+import { getUserTickets } from "../api/tickets.api";
 
-interface Ticket {
-    id: string;
-    userId: string;
-    title: string;
-    description: string;
-    status: 'open' | 'in_progress' | 'closed';
-    createdAt: string;
-}
-
-interface User {
-    id: string;
-    name: string;
-    lastName: string;
-    email: string;
-}
 
 function Tickets() {
     const navigate = useNavigate();
@@ -60,8 +48,7 @@ function Tickets() {
 
     const fetchTickets = async (userId: string) => {
         try {
-            const response = await fetch(`http://localhost:3001/tickets?userId=${userId}`);
-            const userTickets = await response.json();
+            const userTickets = await getUserTickets(userId);
             const sortedTickets = userTickets.sort((a: Ticket, b: Ticket) =>
                 new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
             //getTime - vraca broj milisekundi od 01.01.1970.

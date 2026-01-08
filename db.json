@@ -5,28 +5,40 @@
       "name": "asdad",
       "lastName": "sa",
       "email": "asda@da.asd",
-      "password": "adsa"
+      "password": "adsa",
+      "role": "user"
     },
     {
       "id": "0997",
       "name": "Martina",
       "lastName": "Petkovic",
       "email": "martina@email.com",
-      "password": "caocao"
+      "password": "caocao",
+      "role": "user"
     },
     {
       "id": "1456",
       "name": "Marta",
       "lastName": "Mart",
       "email": "mart@gmail.com",
-      "password": "123"
+      "password": "123",
+      "role": "user"
     },
     {
       "id": "d93c",
       "name": "Test",
       "lastName": "Test",
       "email": "test@gmail.com",
-      "password": "test123"
+      "password": "test123",
+      "role": "user"
+    },
+    {
+      "id": "f445",
+      "name": "mara",
+      "lastName": "petk",
+      "email": "mara@gmail.com",
+      "password": "456",
+      "role": "admin"
     }
   ],
   "tickets": [
@@ -36,7 +48,8 @@
       "title": "Problem sa prijavom",
       "description": "Ne mogu da se prijavim na sistem",
       "status": "open",
-      "createdAt": "2024-01-15T10:30:00Z"
+      "createdAt": "2024-01-15T10:30:00Z",
+      "categoryId": ""
     },
     {
       "id": "2",
@@ -44,7 +57,8 @@
       "title": "Zahtev za reset lozinke",
       "description": "Zaboravila sam lozinku",
       "status": "in_progress",
-      "createdAt": "2024-01-14T14:20:00Z"
+      "createdAt": "2024-01-14T14:20:00Z",
+      "categoryId": ""
     },
     {
       "id": "3",
@@ -52,15 +66,20 @@
       "title": "Bug u aplikaciji",
       "description": "Aplikacija se ruši pri otvaranju",
       "status": "closed",
-      "createdAt": "2024-01-13T09:15:00Z"
+      "createdAt": "2024-01-13T09:15:00Z",
+      "categoryId": ""
     },
     {
-      "id": "9070",
-      "userId": "1456",
-      "title": "test",
-      "description": "test",
-      "status": "in_progress",
-      "createdAt": "2026-01-05T15:13:44.336Z"
+      "id": "510f",
+      "userId": "f445",
+      "title": "Odobrenje pristupa",
+      "description": "Trazim odobrenje pristupa na platformu.",
+      "status": "open",
+      "createdAt": "2026-01-06T13:09:29.966Z",
+      "categoryId": ""
     }
+  ],
+  "categories": [
+
   ]
 }
