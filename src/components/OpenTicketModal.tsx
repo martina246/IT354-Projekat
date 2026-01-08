@@ -1,14 +1,7 @@
 import { useState, useEffect } from "react";
 import './OpenTicketModal.css';
-
-interface Ticket {
-    id: string;
-    userId: string;
-    title: string;
-    description: string;
-    status: 'open' | 'in_progress' | 'closed';
-    createdAt: string;
-}
+import type { Ticket } from '../types/Ticket';
+import { updateTicketStatus } from "../api/tickets.api";
 
 interface OpenTicketModalProps {
     isOpen: boolean;
@@ -32,20 +25,9 @@ function OpenTicketModal ({isOpen, onClose, ticket, onTicketUpdated} : OpenTicke
     const handleStatusUpdate = async () => {
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:3001/tickets/${ticket.id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    status: status
-                })
-            });
-
-            if (response.ok) {
-                onTicketUpdated();
-                onClose();
-            }
+            await updateTicketStatus(ticket.id, status);
+            onTicketUpdated();
+            onClose();
         } catch (error) {
             console.error('Error updating ticket: ', error);
         } finally {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllUsers } from "../api/auth.api";
 
 function Login() {
 
@@ -13,7 +14,9 @@ function Login() {
         e.preventDefault();
         
         try {
-            const response = await fetch('http://localhost:3001/users');
+
+            const users = await getAllUsers();
+            /*const response = await fetch('http://localhost:3001/users');
             //saljemo GET zahtev json serveru 
             const users = await response.json();
             //dobijamo sve korisnike i pretvaramo ih u json objekat
@@ -26,11 +29,13 @@ function Login() {
                 u.email === email && u.password === password
             //u.email-email korisnika iz liste, a samo email-email iz inputa
             //ako ga nadje, user-objekat korisnika, a kone user-undefined
+            );*/
+
+            const user = users.find((u) =>
+                u.email === email && u.password === password
             );
 
-            const userByEmail = users.find((u: any) =>
-                u.email === email
-            );
+            const userByEmail = users.find((u) => u.email === email);
 
             if (!userByEmail) {
                 alert('User does not exist');

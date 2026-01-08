@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../api/auth.api";
 
 function Registration() {
     const navigate = useNavigate();
@@ -14,7 +15,12 @@ function Registration() {
         e.preventDefault(); //zaustavljamo submitovanje podataka
         
         try {
-            //fetch - slanje http zahteva (slanje podataka na backend)
+
+            const newUser = await registerUser(formData);
+            console.log('User registered:', newUser);
+            navigate('/login');
+
+            /*//fetch - slanje http zahteva (slanje podataka na backend)
             //http:... - posalji zahtev serveru za rad sa korisnicima '/users' -- endpoint za korisnike
             const response = await fetch('http://localhost:3001/users', {
                 //await -- sacekaj da server odgovori pre nego sto nastavis dalje
@@ -40,7 +46,7 @@ function Registration() {
                 navigate('/login');
             } else {
                 console.error('Registration failed');
-            }
+            }*/
         } catch (error) {
             console.error('Error:', error);
         }

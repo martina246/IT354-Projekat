@@ -1,23 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Home.css";
-
-
-interface Ticket {
-    id: number;
-    userId: string;
-    title: string;
-    description: string;
-    status: 'open' | 'in_progress' | 'closed';
-    createdAt: string;
-}
-
-interface User {
-    id: string;
-    name: string;
-    lastName: string;
-    email: string;
-}
+import OpenTicketModal from "../components/OpenTicketModal";
+import type { Ticket } from '../types/Ticket';
+import type { User } from '../types/User';
+import { getUserTickets } from "../api/tickets.api";
 
 
 
@@ -26,6 +13,10 @@ function Home() {
     const [user, setUser] = useState<User | null>(null);
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [loading, setLoading] = useState(true);
+    
+    // Modal state for opening tickets
+    const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
+    const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
 
     useEffect(() => {
         const loggedInUser = localStorage.getItem('loggedInUser');
@@ -45,9 +36,7 @@ function Home() {
 
     const fetchTickets = async (userId: string) => {
         try {
-            const response = await fetch(`http://localhost:3001/tickets?userId=${userId}`);
-            //GET request ka json-serveru
-            const userTickets = await response.json();
+            const userTickets = await getUserTickets(userId);
             console.log('Fetched tickets for userId:', userId, userTickets);
 
             const sortedTickets = userTickets.sort((a: Ticket, b: Ticket) =>
@@ -77,6 +66,27 @@ function Home() {
             default: return status;
         }
     }
+
+    const handleTicketClick = (ticket: Ticket) => {
+        setSelectedTicket(ticket);
+        setIsTicketModalOpen(true);
+    };
+
+    const handleTicketUpdated = () => {
+        // Refresh tickets after update
+        if (user) {
+            fetchTickets(user.id);
+        }
+    };
+
+    // Convert Home Ticket to OpenTicketModal Ticket format (id: number -> string)
+    const convertTicketForModal = (ticket: Ticket | null) => {
+        if (!ticket) return null;
+        return {
+            ...ticket,
+            id: String(ticket.id)
+        };
+    };
 
     if (loading) {
         return <div className="home-loading">Loading...</div>;
@@ -109,24 +119,7 @@ function Home() {
             <main className="home-main">
                 <h1 className="home-welcome">Dobro dosli, {user.name} {user.lastName}!</h1>
 
-                {/* quick actions */}
-                <div className="home-quick-actions">
-                    <h2>Brze akcije</h2>
-                    <div className="home-actions-buttons">
-                        <button 
-                            onClick={() => navigate('/create-ticket')}
-                            className="home-action-button home-action-button-primary"
-                        >
-                            Kreiraj novi tiket
-                        </button>
-                        <button 
-                            onClick={() => navigate('/tickets')}
-                            className="home-action-button home-action-button-secondary"
-                        >
-                            Moji tiketi
-                        </button>
-                    </div>
-                </div>
+                
 
                 {/* summary */}
                 <div className="home-summary">
@@ -155,7 +148,7 @@ function Home() {
                     ) : (
                         <div className="home-tickets-list">
                             {lastThreeTickets.map((ticket) => (
-                                <div 
+                                <div onClick={() => handleTicketClick(ticket)}
                                     key={ticket.id} 
                                     className={`home-ticket-card ${ticket.status === 'in_progress' ? 'in-progress' : ticket.status}`}
                                 >
@@ -176,6 +169,17 @@ function Home() {
                         </div>
                     )}
                 </div>
+
+                {/* Ticket Modal */}
+                <OpenTicketModal
+                    isOpen={isTicketModalOpen}
+                    onClose={() => {
+                        setIsTicketModalOpen(false);
+                        setSelectedTicket(null);
+                    }}
+                    ticket={convertTicketForModal(selectedTicket)}
+                    onTicketUpdated={handleTicketUpdated}
+                />
             </main>
         </div>
     )

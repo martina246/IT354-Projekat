@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./CreateTicketModal.css";
+import { createTicket } from "../api/tickets.api";
 
 interface CreateTicketModalProps {
     isOpen: boolean;
@@ -28,26 +29,17 @@ function CreateTicketModal({isOpen, onClose, onTicketCreated} : CreateTicketModa
         const user = JSON.parse(loggedInUser);
 
         try {
-            const response = await fetch(`http://localhost:3001/tickets`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            body: JSON.stringify({
+            await createTicket({
                 userId: user.id,
                 title,
                 description,
                 status: 'open',
-                createdAt: new Date().toISOString()
-            })
-        });
+            });
 
-        if (response.ok) {
             setTitle('');
             setDescription('');
             onTicketCreated();
             onClose();
-        }
 
     } catch (error) {
         console.error('Error creating ticket: ', error);
