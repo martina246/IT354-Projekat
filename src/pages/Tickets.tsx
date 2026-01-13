@@ -7,11 +7,13 @@ import "./Tickets.css";
 import type { Ticket } from '../types/Ticket';
 import type { User } from '../types/User';
 import { getUserTickets } from "../api/tickets.api";
+import { useAuth } from "../context/AuthContext";
+
 
 
 function Tickets() {
     const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
+    const { user } = useAuth();
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
     const [loading, setLoading] = useState(true);
@@ -30,17 +32,10 @@ function Tickets() {
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
 
     useEffect(() => {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (!loggedInUser) {
-            navigate('/login');
-            return;
-            //prekida dalje izvrsavanje ovog useEffect-a
-        }
+        if (!user) return;
 
-        const userData = JSON.parse(loggedInUser);
-        setUser(userData);
-        fetchTickets(userData.id);
-    }, [navigate]);
+        fetchTickets(user.id);
+    }, [user]);
 
     useEffect(() => {
         filterTickets();
