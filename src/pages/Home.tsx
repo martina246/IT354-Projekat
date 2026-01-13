@@ -5,12 +5,13 @@ import OpenTicketModal from "../components/OpenTicketModal";
 import type { Ticket } from '../types/Ticket';
 import type { User } from '../types/User';
 import { getUserTickets } from "../api/tickets.api";
+import { useAuth } from "../context/AuthContext";
 
 
 
 function Home() {
     const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
+    const { user } = useAuth();
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [loading, setLoading] = useState(true);
     
@@ -19,20 +20,10 @@ function Home() {
     const [isTicketModalOpen, setIsTicketModalOpen] = useState(false);
 
     useEffect(() => {
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (!loggedInUser) {
-            navigate('/login');
-            return;
-        }
-        
-        const userData = JSON.parse(loggedInUser);
-        setUser(userData);
-        console.log('Logged in user:', userData);
-        console.log('User ID:', userData.id);
+        if (!user) return;
 
-        fetchTickets(userData.id);
-
-    }, [navigate]);
+        fetchTickets(user.id);
+    }, [user]);
 
     const fetchTickets = async (userId: string) => {
         try {

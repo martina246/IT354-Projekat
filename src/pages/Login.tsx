@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUsers } from "../api/auth.api";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
 
     const navigate = useNavigate();
+    const { login } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState(''); 
 
@@ -42,7 +44,7 @@ function Login() {
             } else if (userByEmail.password !== password) {
                 alert('Invalid password');
             } else {
-                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                login(user!);
                 console.log('Login successful: ', user);
                 navigate('/home');
             }
