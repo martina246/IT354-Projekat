@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./CreateTicketModal.css";
 import { createTicket } from "../api/tickets.api";
+import { useAuth } from "../context/AuthContext";
 
 interface CreateTicketModalProps {
     isOpen: boolean;
@@ -13,6 +14,7 @@ interface CreateTicketModalProps {
 //Props - podaci koje komponenta prima
 
 function CreateTicketModal({isOpen, onClose, onTicketCreated} : CreateTicketModalProps) {
+    const { user } = useAuth();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [loading, setLoading] = useState(false);
@@ -23,10 +25,11 @@ function CreateTicketModal({isOpen, onClose, onTicketCreated} : CreateTicketModa
         e.preventDefault();
         setLoading(true);
 
-        const loggedInUser = localStorage.getItem('loggedInUser');
-        if (!loggedInUser) return;
-
-        const user = JSON.parse(loggedInUser);
+        if (!user) {
+            console.error('User not logged in');
+            setLoading(false);
+            return;
+        }
 
         try {
             await createTicket({

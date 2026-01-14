@@ -1,16 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
 import "./Home.css";
 import OpenTicketModal from "../components/OpenTicketModal";
 import type { Ticket } from '../types/Ticket';
-import type { User } from '../types/User';
 import { getUserTickets } from "../api/tickets.api";
 import { useAuth } from "../context/AuthContext";
+import Navbar from "../components/Navbar";
+import StatusBadge from "../components/StatusBadge";
 
 
 
 function Home() {
-    const navigate = useNavigate();
     const { user } = useAuth();
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [loading, setLoading] = useState(true);
@@ -49,14 +48,6 @@ function Home() {
     const lastThreeTickets = tickets.slice(0, 3);
     //3 najnovija
 
-    const getStatusLabel = (status: string) => {
-        switch (status) {
-            case 'open': return 'Open';
-            case 'in_progress': return 'In progress';
-            case 'closed': return 'Closed';
-            default: return status;
-        }
-    }
 
     const handleTicketClick = (ticket: Ticket) => {
         setSelectedTicket(ticket);
@@ -91,20 +82,8 @@ function Home() {
 
     return (
         <div className="home-container">
-            {/* sidebar */}
-            <aside className="home-sidebar">
-                <nav>
-                    <h2>Help Desk</h2>
-                    <ul>
-                        <li>
-                            <Link to="/home">Home</Link>
-                        </li>
-                        <li>
-                            <Link to="/tickets">My tickets</Link>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+            
+            <Navbar />
 
             {/* main */}
             <main className="home-main">
@@ -151,9 +130,7 @@ function Home() {
                                                 {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
                                             </small>
                                         </div>
-                                        <span className={`home-ticket-status ${ticket.status === 'in_progress' ? 'in-progress' : ticket.status}`}>
-                                            {getStatusLabel(ticket.status)}
-                                        </span>
+                                        <StatusBadge status={ticket.status} />
                                     </div>
                                 </div>
                             ))}

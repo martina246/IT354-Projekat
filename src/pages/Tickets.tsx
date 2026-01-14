@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
 //useEffect se izvrsava kada se komponenta ucita ili se nesto promeni
-import { useNavigate, Link } from "react-router-dom";
 import CreateTicketModal from "../components/CreateTicketModal";
 import OpenTicketModal from "../components/OpenTicketModal";
+import Navbar from "../components/Navbar";
+import StatusBadge from "../components/StatusBadge";
 import "./Tickets.css";
 import type { Ticket } from '../types/Ticket';
-import type { User } from '../types/User';
 import { getUserTickets } from "../api/tickets.api";
 import { useAuth } from "../context/AuthContext";
 
 
 
 function Tickets() {
-    const navigate = useNavigate();
     const { user } = useAuth();
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
@@ -138,23 +137,7 @@ function Tickets() {
     return (
         <div className="tickets-container">
             {/* sidebar */}
-            <aside className="tickets-sidebar">
-                <nav>
-                    <h2>Help Desk</h2>
-                    <ul>
-                        <li>
-                            <Link to="/home">
-                                Home
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/tickets">
-                                My tickets
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+            <Navbar />
 
             {/* main*/}
             <main className="tickets-main">
@@ -242,9 +225,12 @@ function Tickets() {
                                     <p className="tickets-card-description">
                                         {ticket.description}
                                     </p>
-                                    <small className="tickets-card-date">
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem'}}>
+                                        <small className="tickets-card-date">
                                         {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
-                                    </small>
+                                        </small>
+                                        <StatusBadge status={ticket.status} variant="small" />
+                                    </div>
                                 </div>
                             ))}
                             {openTickets.length === 0 && (
@@ -276,9 +262,12 @@ function Tickets() {
                                     <p className="tickets-card-description">
                                         {ticket.description}
                                     </p>
-                                    <small className="tickets-card-date">
-                                        {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
-                                    </small>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
+                                        <small className="tickets-card-date">
+                                            {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
+                                        </small>
+                                        <StatusBadge status={ticket.status} variant="small" />
+                                    </div>
                                 </div>
                             ))}
                             {inProgressTickets.length === 0 && (
@@ -310,9 +299,12 @@ function Tickets() {
                                     <p className="tickets-card-description">
                                         {ticket.description}
                                     </p>
-                                    <small className="tickets-card-date">
-                                        {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
-                                    </small>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '0.5rem' }}>
+                                        <small className="tickets-card-date">
+                                            {new Date(ticket.createdAt).toLocaleDateString('sr-RS')}
+                                        </small>
+                                        <StatusBadge status={ticket.status} variant="small" />
+                                    </div>
                                 </div>
                             ))}
                             {closedTickets.length === 0 && (
