@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import './OpenTicketModal.css';
 import type { Ticket } from '../types/Ticket';
 import { updateTicketStatus } from "../api/tickets.api";
+import StatusBadge from "../components/StatusBadge";
 
 interface OpenTicketModalProps {
     isOpen: boolean;
@@ -36,24 +37,6 @@ function OpenTicketModal ({isOpen, onClose, ticket, onTicketUpdated} : OpenTicke
 
     }
 
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case 'open': return '#ff6b6b';
-            case 'in_progress': return '#4ecdc4';
-            case 'closed': return '#95e1d3';
-            default: return '#ccc';
-        }
-    }
-
-    const getStatusLabel = (status: string) => {
-        switch (status) {
-            case 'open': return 'Open';
-            case 'in_progress': return 'In Progress';
-            case 'closed': return 'Closed';
-            default: return status;
-        }
-    }
-
     return (
         <div className="modal-overlay">
             <div className="modal-content ticket-details-modal">
@@ -84,12 +67,7 @@ function OpenTicketModal ({isOpen, onClose, ticket, onTicketUpdated} : OpenTicke
                     <div className="ticket-detail-section">
                         <label className="ticket-detail-label">Status</label>
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                            <span 
-                                className="ticket-status-badge"
-                                style={{ backgroundColor: getStatusColor(ticket.status) }}
-                            >
-                                {getStatusLabel(ticket.status)}
-                            </span>
+                        <StatusBadge status={ticket.status} />
                             <select
                                 value={status}
                                 onChange={(e) => setStatus(e.target.value as 'open' | 'in_progress' | 'closed')}
