@@ -36,6 +36,20 @@ export async function updateTicketStatus(
     });
 }
 
+export async function updateTicket(
+    ticketId: string,
+    updates: {
+        title?: string;
+        description?: string;
+        status?: 'open' | 'in_progress' | 'closed';
+    }
+): Promise<Ticket> {
+    return apiRequest<Ticket>(`/tickets/${ticketId}`, {
+        method: 'PATCH',
+        body: JSON.stringify(updates),
+    });
+}
+
 
 export async function deleteTicket(ticketId: string): Promise<void> {
     return apiRequest<void>(`/tickets/${ticketId}`, {

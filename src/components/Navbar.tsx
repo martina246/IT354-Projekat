@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
+    const { isAdmin } = useAuth();
+
     return (
         <aside className="navbar-sidebar">
             <nav>
@@ -13,6 +16,16 @@ function Navbar() {
                     <li>
                         <Link to="/tickets">My tickets</Link>
                     </li>
+                    {isAdmin() && (
+                        <>
+                        <li>
+                            <Link to="/admin">Admin Dashboard</Link>
+                        </li>
+                        <li>
+                            <Link to="/admin/tickets">All Tickets</Link>
+                        </li>
+                        </>
+                    )}
                 </ul>
             </nav>
         </aside>
