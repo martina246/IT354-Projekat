@@ -1,0 +1,210 @@
+.admin-dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-dashboard-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.admin-dashboard-title {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.admin-dashboard-subtitle {
+    margin-bottom: 2rem;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Quick Actions */
+.admin-dashboard-actions {
+    margin-bottom: 2rem;
+}
+
+.admin-action-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+}
+
+.admin-action-primary {
+    background-color: #646cff;
+    color: #fff;
+}
+
+.admin-action-primary:hover {
+    background-color: #535bf2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.admin-action-secondary {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #646cff;
+}
+
+.admin-action-secondary:hover {
+    background-color: #646cff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* Summary Section */
+.admin-dashboard-summary {
+    margin-bottom: 2rem;
+}
+
+.admin-dashboard-summary h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.admin-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.admin-summary-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.admin-summary-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.admin-summary-card.open h3 {
+    color: #ff6b6b;
+}
+
+.admin-summary-card.in-progress h3 {
+    color: #4ecdc4;
+}
+
+.admin-summary-card.closed h3 {
+    color: #95e1d3;
+}
+
+.admin-summary-count {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+/* Latest Tickets Section */
+.admin-dashboard-latest {
+    margin-bottom: 2rem;
+}
+
+.admin-dashboard-latest h2 {
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.admin-tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.admin-ticket-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.admin-ticket-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.admin-ticket-card.open {
+    border-left: 4px solid #ff6b6b;
+}
+
+.admin-ticket-card.in-progress {
+    border-left: 4px solid #4ecdc4;
+}
+
+.admin-ticket-card.closed {
+    border-left: 4px solid #95e1d3;
+}
+
+.admin-ticket-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.admin-ticket-info {
+    flex: 1;
+}
+
+.admin-ticket-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.125rem;
+}
+
+.admin-ticket-info p {
+    margin: 0 0 0.5rem 0;
+    color: #666;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.admin-ticket-info small {
+    display: block;
+    color: #999;
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+}
+
+.admin-ticket-user-id {
+    color: #646cff !important;
+    font-weight: 500;
+}
+
+.admin-empty-message {
+    text-align: center;
+    color: #999;
+    padding: 2rem;
+    font-style: italic;
+}
+
+.admin-dashboard-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #666;
+}

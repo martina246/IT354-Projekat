@@ -1,0 +1,175 @@
+.admin-tickets-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-tickets-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.admin-tickets-title {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+/*filteri*/
+
+.admin-tickets-filters {
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.admin-search-input,
+.admin-filter-select {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+}
+
+.admin-search-input {
+    flex: 1;
+    min-width: 300px;
+}
+
+.admin-filter-select {
+    cursor: pointer;
+    min-width: 150px;
+}
+
+/*tabela*/
+
+.admin-tickets-table-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin-bottom: 1rem;    
+}
+
+.admin-tickets-table thead{
+    background-color: #f8f9fa;
+}
+
+.admin-tickets-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.admin-tickets-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.admin-table-row {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-table-row:hover {
+    background-color: #f8f9fa;
+}
+
+.admin-table-id {
+    font-weight: 600;
+    color: #646cff;
+    font-family: monospace;
+}
+
+.admin-table-title {
+    font-weight: 500;
+    color: #333;
+    max-width: 200px;
+}
+
+.admin-table-description {
+    color: #666;
+    max-width: 300px;
+    font-size: 0.875rem;
+}
+
+.admin-table-user-id {
+    font-family: monospace;
+    font-size: 0.875rem;
+    color: #646cff;
+}
+
+.admin-table-date {
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.admin-table-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.admin-action-btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.admin-view-btn {
+    background-color: #646cff;
+    color: #fff;
+}
+
+.admin-view-btn:hover {
+    background-color: #535bf2;
+}
+
+.admin-edit-btn {
+    background-color: #4ecdc4;
+    color: #fff;
+}
+
+.admin-edit-btn:hover {
+    background-color: #45b8b0;
+}
+
+.admin-delete-btn {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.admin-delete-btn:hover {
+    background-color: #ee5a5a;
+}
+
+.admin-table-empty {
+    text-align: center;
+    padding: 3rem !important;
+    color: #999;
+    font-style: italic;
+}
+
+.admin-tickets-count {
+    text-align: right;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.admin-tickets-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #666;
+}

@@ -68,18 +68,7 @@
       "status": "closed",
       "createdAt": "2024-01-13T09:15:00Z",
       "categoryId": ""
-    },
-    {
-      "id": "510f",
-      "userId": "f445",
-      "title": "Odobrenje pristupa",
-      "description": "Trazim odobrenje pristupa na platformu.",
-      "status": "open",
-      "createdAt": "2026-01-06T13:09:29.966Z",
-      "categoryId": ""
     }
   ],
-  "categories": [
-
-  ]
+  "categories": []
 }
