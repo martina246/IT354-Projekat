@@ -1,0 +1,203 @@
+.admin-categories-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-categories-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.admin-categories-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.admin-categories-title {
+    margin: 0;
+    color: #333;
+    font-size: 2rem;
+}
+
+.admin-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.admin-category-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.admin-category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.admin-category-content {
+    margin-bottom: 1rem;
+}
+
+.admin-category-name {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.25rem;
+}
+
+.admin-category-description {
+    color: #666;
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.admin-category-ticket-count {
+    color: #646cff;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.admin-category-date {
+    color: #999;
+    font-size: 0.75rem;
+}
+
+.admin-category-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+
+.admin-empty-message {
+    text-align: center;
+    padding: 3rem;
+    color: #999;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* Modal Styles */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.admin-modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.admin-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.admin-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.admin-form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.admin-form-input,
+.admin-form-textarea {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    background-color: #fff;
+    color: #333;
+}
+
+.admin-form-textarea {
+    resize: vertical;
+}
+
+.admin-modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
+
+.admin-action-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.admin-action-primary {
+    background-color: #646cff;
+    color: #fff;
+}
+
+.admin-action-primary:hover {
+    background-color: #535bf2;
+}
+
+.admin-cancel-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+.admin-cancel-button:hover {
+    background-color: #bbb;
+}
+
+.admin-save-button {
+    background-color: #4ecdc4;
+    color: #fff;
+}
+
+.admin-save-button:hover {
+    background-color: #45b8b0;
+}
+
+.admin-action-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.admin-categories-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #666;
+}

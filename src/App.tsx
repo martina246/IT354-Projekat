@@ -11,6 +11,8 @@ import AdminTicketDetails from './pages/AdminTicketDetails'
 import { AuthProvider } from './context/AuthContext'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { AdminRoute } from './components/AdminRoute'
+import AdminCategories from './pages/AdminCategories'
+import AdminUsers from './pages/AdminUsers'
 
 
 function App() {
@@ -43,6 +45,16 @@ function App() {
             <AdminTicketDetails />
           </AdminRoute>
         } />
+        <Route path="/admin/categories" element={
+          <AdminRoute>
+            <AdminCategories />
+          </AdminRoute>
+        }/>
+        <Route path="/admin/users" element={
+          <AdminRoute>
+            <AdminUsers />
+          </AdminRoute>
+        }/>
 
         
 

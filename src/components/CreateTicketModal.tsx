@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CreateTicketModal.css";
 import { createTicket } from "../api/tickets.api";
 import { useAuth } from "../context/AuthContext";
+import { getAllCategories } from "../api/categories.api";
+import type { Category } from '../types/Category';
 
 interface CreateTicketModalProps {
     isOpen: boolean;
@@ -17,7 +19,27 @@ function CreateTicketModal({isOpen, onClose, onTicketCreated} : CreateTicketModa
     const { user } = useAuth();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [categoryId, setCategoryId] = useState<string>('');
+    const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(false);
+    const [loadingCategories, setLoadingCategories] = useState(true);
+
+    useEffect(() => {
+        if (isOpen) {
+            fetchCategories();
+        }
+    }, [isOpen]);
+
+    const fetchCategories = async () => {
+        try {
+            const allCategories = await getAllCategories();
+            setCategories(allCategories);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        } finally {
+            setLoadingCategories(false);
+        }
+    };
 
     if (!isOpen) return null;
 
@@ -37,18 +59,21 @@ function CreateTicketModal({isOpen, onClose, onTicketCreated} : CreateTicketModa
                 title,
                 description,
                 status: 'open',
+                categoryId: categoryId || '',
             });
 
             setTitle('');
             setDescription('');
+            setCategoryId('');
             onTicketCreated();
             onClose();
 
-    } catch (error) {
-        console.error('Error creating ticket: ', error);
-    } finally {
-        setLoading(false);
-    }
+        } catch (error) {
+            console.error('Error creating ticket: ', error);
+            alert('Failed to create ticket');
+        } finally {
+            setLoading(false);
+        }
 
     };
 
@@ -90,6 +115,28 @@ function CreateTicketModal({isOpen, onClose, onTicketCreated} : CreateTicketModa
                             rows={4}
                             className="modal-textarea"
                         />
+                    </div>
+
+                    <div className="modal-form-group">
+                        <label className="modal-label">
+                            Category (Optional)
+                        </label>
+                        {loadingCategories ? (
+                            <div>Loading categories...</div>
+                        ) : (
+                            <select
+                                value={categoryId}
+                                onChange={(e) => setCategoryId(e.target.value)}
+                                className="modal-input"
+                            >
+                                <option value="">No Category</option>
+                                {categories.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                        )}
                     </div>
 
                     <div className="modal-actions">
