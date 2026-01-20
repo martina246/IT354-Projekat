@@ -39,6 +39,13 @@
       "email": "mara@gmail.com",
       "password": "456",
       "role": "admin"
+    },
+    {
+      "id": "a1fe",
+      "name": "maja",
+      "lastName": "maja",
+      "email": "maja@gmail.com",
+      "password": "123"
     }
   ],
   "tickets": [
@@ -77,6 +84,15 @@
       "status": "open",
       "categoryId": "e605",
       "createdAt": "2026-01-20T02:14:19.428Z"
+    },
+    {
+      "id": "45ec",
+      "userId": "f445",
+      "title": "Potrebno odobrenje pristupa",
+      "description": "Potrebno odobrenje pristupa na xyz platformu",
+      "status": "open",
+      "categoryId": "a0be",
+      "createdAt": "2026-01-20T20:38:54.539Z"
     }
   ],
   "categories": [
@@ -85,6 +101,12 @@
       "name": "Bug",
       "description": "test1",
       "createdAt": "2026-01-20T02:07:59.162Z"
+    },
+    {
+      "id": "a0be",
+      "name": "Dev",
+      "description": "dadada",
+      "createdAt": "2026-01-20T19:36:03.835Z"
     }
   ]
 }

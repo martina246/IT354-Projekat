@@ -55,16 +55,6 @@ function AdminDashboard() {
                 <h1 className="admin-dashboard-title">Admin Dashboard</h1>
                 <p className="admin-dashboard-subtitle">Welcome, {user.name} {user.lastName}</p>
 
-                {/*brze akcije*/}
-                <div className="admin-dashboard-actions">
-                    <button onClick={() => navigate('/admin/tickets')} className="admin-action-button admin-action-primary">
-                        View All Tickets
-                    </button>
-                    <button onClick={() => navigate('/home')} className="admin-action-button admin-action-secondary">
-                        Go to Home
-                    </button>
-                </div>
-
                 {/*ukratko*/}
                 <div className="admin-dashboard-summary">
                     <h2>Ticket Summary</h2>

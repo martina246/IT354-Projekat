@@ -1,24 +1,92 @@
 .navbar-sidebar {
-    width: 250px;
-    background-color: #1a1a1a;
-    padding: 1rem;
-    border-right: 1px solid #333;
+    width: 260px;
+    background: linear-gradient(180deg, #2b2f38 0%, #1f2430 100%);
+    padding: 0;
+    border-right: 1px solid #3a3f4a;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    z-index: 1000;
 }
 
-.navbar-sidebar nav ul {
+.navbar-header {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid #3a3f4a;
+    background-color: rgba(100, 108, 255, 0.1);
+}
+
+.navbar-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.navbar-menu {
     list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex: 1;
+}
+
+.navbar-menu li {
+    margin: 0.25rem 0.75rem;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.875rem 1.25rem;
+    color: #b4b8c4;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(100, 108, 255, 0.15);
+    transform: translateX(4px);
+}
+
+.nav-link.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #646cff 0%, #535bf2 100%);
+    box-shadow: 0 4px 12px rgba(100, 108, 255, 0.4);
+    font-weight: 600;
+}
+
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background-color: #ffffff;
+    border-radius: 0 2px 2px 0;
+}
+
+.navbar-divider {
+    margin: 1rem 0.75rem 0.5rem 0.75rem !important;
     padding: 0;
 }
 
-.navbar-sidebar nav li {
-    margin-bottom: 0.5rem;
-}
-
-.navbar-sidebar nav a {
-    color: #fff;
-    text-decoration: none;
-}
-
-.navbar-sidebar nav a:hover {
-    color: #646cff;
+.navbar-section-label {
+    display: block;
+    padding: 0.5rem 1.25rem;
+    color: #7a7f8a;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
