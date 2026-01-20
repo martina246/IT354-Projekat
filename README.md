@@ -1,73 +1,66 @@
-# React + TypeScript + Vite
+# Help Desk Ticketing App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript web application for managing help desk tickets with user and admin roles. Data is stored locally using json-server.
 
-Currently, two official plugins are available:
+## Features
+- User authentication (register/login) with role-based access (user/admin)
+- Ticket creation, viewing, updating, and deletion
+- Ticket status management (open, in progress, closed)
+- Categories CRUD and category assignment to tickets
+- Admin dashboard with ticket list and filters
+- Admin user management (view users and their tickets)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React + TypeScript
+- Vite
+- react-router-dom for client-side routing
+- json-server for local API
 
-## React Compiler
+## Project Structure
+- `src/pages` - page-level views
+- `src/components` - reusable UI components
+- `src/api` - API request helpers
+- `src/types` - shared TypeScript types
+- `src/context` - auth context and guards
+- `src/utils` - small shared utilities
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1) Install dependencies
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2) Start the API server
+```bash
+npm run server
 ```
+This serves `db.json` at `http://localhost:3001`.
+
+### 3) Start the frontend
+```bash
+npm run dev
+```
+Open the app at the URL printed by Vite (usually `http://localhost:5173`).
+
+## Test Accounts
+These accounts are pre-seeded in `db.json`:
+
+- **Admin**
+  - Email: `mara@gmail.com`
+  - Password: `456`
+
+- **User**
+  - Email: `mart@gmail.com`
+  - Password: `123`
+
+## Scripts
+- `npm run dev` - start the frontend
+- `npm run server` - start json-server
+- `npm run build` - build the frontend
+- `npm run preview` - preview the production build
+- `npm run lint` - run ESLint
+
+## Notes
+- Tickets include a `categoryId` field; categories are managed in the admin panel.
+- All data lives in `db.json` and resets if you replace that file.

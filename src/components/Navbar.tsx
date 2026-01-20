@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../context/AuthContext";
 
@@ -8,27 +8,44 @@ function Navbar() {
     return (
         <aside className="navbar-sidebar">
             <nav>
-                <h2>Help Desk</h2>
-                <ul>
+                <div className="navbar-header">
+                    <h2>Help Desk</h2>
+                </div>
+                <ul className="navbar-menu">
                     <li>
-                        <Link to="/home">Home</Link>
+                        <NavLink to="/home" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            Home
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="/tickets">My tickets</Link>
+                        <NavLink to="/tickets" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                            My Tickets
+                        </NavLink>
                     </li>
                     {isAdmin() && (
                         <>
-                        <li>
-                            <Link to="/admin">Admin Dashboard</Link>
+                        <li className="navbar-divider">
+                            <span className="navbar-section-label">Admin</span>
                         </li>
                         <li>
-                            <Link to="/admin/tickets">All Tickets</Link>
+                            <NavLink to="/admin" end className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                                Dashboard
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/admin/categories">Categories</Link>
+                            <NavLink to="/admin/tickets" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                                All Tickets
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to="/admin/users">Users</Link>
+                            <NavLink to="/admin/categories" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                                Categories
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/admin/users" className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>
+                                Users
+                            </NavLink>
                         </li>
                         </>
                     )}

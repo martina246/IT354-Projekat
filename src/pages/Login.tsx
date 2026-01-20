@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllUsers } from "../api/auth.api";
 import { useAuth } from "../context/AuthContext";
+import "./Login.css";
 
 function Login() {
 
@@ -55,15 +56,35 @@ function Login() {
     }
 
     return (
-        <div>
-            <h1>Log In</h1> <br/>
-            <form onSubmit={handleLogIn}>
-                <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required /> <br/>
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required /> <br/>
+        <div className="auth-page">
+            <div className="auth-card">
+                <h1 className="auth-title">Log In</h1>
+                <p className="auth-subtitle">Access your help desk dashboard</p>
+                <form onSubmit={handleLogIn} className="auth-form">
+                    <label className="auth-label" htmlFor="login-email">Email</label>
+                    <input
+                        id="login-email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="auth-input"
+                    />
+                    <label className="auth-label" htmlFor="login-password">Password</label>
+                    <input
+                        id="login-password"
+                        type="password"
+                        placeholder="Your password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="auth-input"
+                    />
 
-                <button type="submit">Log In</button>
-            </form>
-            
+                    <button type="submit" className="auth-button primary">Log In</button>
+                </form>
+            </div>
         </div>
     )
 }

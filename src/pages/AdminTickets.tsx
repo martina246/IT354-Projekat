@@ -8,6 +8,7 @@ import StatusBadge from "../components/StatusBadge";
 import { getAllCategories } from "../api/categories.api";
 import type { Category } from '../types/Category';
 import { getCategoryName } from "../utils/categoryUtils";
+import "./AdminTickets.css"
 
 function AdminTickets() {
     const { user } = useAuth();
