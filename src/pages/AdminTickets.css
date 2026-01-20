@@ -110,6 +110,15 @@
     font-size: 0.875rem;
 }
 
+.admin-category-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: 500;
+}
+
 .admin-table-actions {
     display: flex;
     gap: 0.5rem;

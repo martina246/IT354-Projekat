@@ -16,11 +16,13 @@ export async function createTicket(ticketData: {
     title: string;
     description: string;
     status: 'open' | 'in_progress' | 'closed';
+    categoryId?: string;
 }): Promise<Ticket> {
     return apiRequest<Ticket>('/tickets', {
         method: 'POST',
         body: JSON.stringify({
             ...ticketData,
+            categoryId: ticketData.categoryId || '',
             createdAt: new Date().toISOString(),
         }),
     });
@@ -42,6 +44,7 @@ export async function updateTicket(
         title?: string;
         description?: string;
         status?: 'open' | 'in_progress' | 'closed';
+        categoryId?: string;
     }
 ): Promise<Ticket> {
     return apiRequest<Ticket>(`/tickets/${ticketId}`, {

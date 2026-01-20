@@ -6,6 +6,9 @@ import StatusBadge from "../components/StatusBadge";
 import type { Ticket } from '../types/Ticket';
 import { getAllTickets, updateTicketStatus, deleteTicket, updateTicket } from "../api/tickets.api";
 import { useAuth } from "../context/AuthContext";
+import { getAllCategories } from "../api/categories.api";
+import type { Category } from '../types/Category';
+import { getCategoryName } from "../utils/categoryUtils";
 
 function AdminTicketDetails() {
     const { id } = useParams<{ id: string }>();
@@ -20,6 +23,8 @@ function AdminTicketDetails() {
     const [editTitle, setEditTitle] = useState('');
     const [editDescription, setEditDescription] = useState('');
     const [editStatus, setEditStatus] = useState<'open' | 'in_progress' | 'closed'>('open');
+    const [editCategoryId, setEditCategoryId] = useState<string>('');
+    const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -28,6 +33,7 @@ function AdminTicketDetails() {
             setIsEditMode(true);
         }
         fetchTicket();
+        fetchCategories();
     }, [id]);
 
     useEffect(() => {
@@ -35,8 +41,18 @@ function AdminTicketDetails() {
             setEditTitle(ticket.title);
             setEditDescription(ticket.description);
             setEditStatus(ticket.status);
+            setEditCategoryId(ticket.categoryId || '');
         }
     }, [ticket]);
+
+    const fetchCategories = async () => {
+        try {
+            const allCategories = await getAllCategories();
+            setCategories(allCategories);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    };
 
     const fetchTicket = async () => {
         if (!id) return;
@@ -80,6 +96,7 @@ function AdminTicketDetails() {
                 title: editTitle,
                 description: editDescription,
                 status: editStatus,
+                categoryId: editCategoryId,
             });
             setIsEditMode(false);
             await fetchTicket();
@@ -96,6 +113,7 @@ function AdminTicketDetails() {
             setEditTitle(ticket.title);
             setEditDescription(ticket.description);
             setEditStatus(ticket.status);
+            setEditCategoryId(ticket.categoryId || '');
         }
         setIsEditMode(false);
     };
@@ -221,6 +239,28 @@ function AdminTicketDetails() {
                                 </>
                             )}
                         </div>
+                    </div>
+
+                    <div className="admin-detail-section">
+                        <label className="admin-detail-label">Category</label>
+                        {isEditMode ? (
+                            <select
+                                value={editCategoryId}
+                                onChange={(e) => setEditCategoryId(e.target.value)}
+                                className="admin-status-select"
+                            >
+                                <option value="">No Category</option>
+                                {categories.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                        ) : (
+                            <div className="admin-detail-value">
+                                {ticket.categoryId ? getCategoryName(ticket.categoryId, categories) : 'No Category'}
+                            </div>
+                        )}
                     </div>
 
                     <div className="admin-detail-section">

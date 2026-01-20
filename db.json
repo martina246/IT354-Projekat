@@ -68,7 +68,23 @@
       "status": "closed",
       "createdAt": "2024-01-13T09:15:00Z",
       "categoryId": ""
+    },
+    {
+      "id": "a6ea",
+      "userId": "f445",
+      "title": "test1",
+      "description": "test2",
+      "status": "open",
+      "categoryId": "e605",
+      "createdAt": "2026-01-20T02:14:19.428Z"
     }
   ],
-  "categories": []
+  "categories": [
+    {
+      "id": "e605",
+      "name": "Bug",
+      "description": "test1",
+      "createdAt": "2026-01-20T02:07:59.162Z"
+    }
+  ]
 }

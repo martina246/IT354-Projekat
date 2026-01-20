@@ -24,6 +24,12 @@ function Navbar() {
                         <li>
                             <Link to="/admin/tickets">All Tickets</Link>
                         </li>
+                        <li>
+                            <Link to="/admin/categories">Categories</Link>
+                        </li>
+                        <li>
+                            <Link to="/admin/users">Users</Link>
+                        </li>
                         </>
                     )}
                 </ul>

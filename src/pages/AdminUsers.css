@@ -1,0 +1,214 @@
+.admin-users-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-users-main {
+    flex: 1;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.admin-users-title {
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 2rem;
+}
+
+.admin-users-filters {
+    margin-bottom: 2rem;
+}
+
+.admin-search-input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    max-width: 500px;
+}
+
+.admin-users-table-wrapper {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.admin-users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-users-table thead {
+    background-color: #f8f9fa;
+}
+
+.admin-users-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.admin-users-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    color: #333;
+}
+
+.admin-table-row {
+    transition: background-color 0.2s;
+}
+
+.admin-table-row:hover {
+    background-color: #f8f9fa;
+}
+
+.admin-table-id {
+    font-weight: 600;
+    color: #646cff;
+    font-family: monospace;
+}
+
+.admin-role-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.admin-role {
+    background-color: #ff6b6b;
+    color: #fff;
+}
+
+.user-role {
+    background-color: #4ecdc4;
+    color: #fff;
+}
+
+.admin-users-count {
+    text-align: right;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.admin-users-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-size: 1.5rem;
+    color: #666;
+}
+
+/* User Tickets Modal */
+.admin-user-tickets-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.admin-user-tickets-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.admin-user-tickets-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.admin-user-tickets-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.admin-close-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.admin-close-button:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.admin-user-tickets-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.admin-user-ticket-card {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.admin-user-ticket-card:hover {
+    background-color: #e9ecef;
+    transform: translateX(4px);
+}
+
+.admin-user-ticket-info {
+    flex: 1;
+}
+
+.admin-user-ticket-info h3 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.admin-user-ticket-info p {
+    margin: 0 0 0.5rem 0;
+    color: #666;
+    font-size: 0.875rem;
+}
+
+.admin-user-ticket-info small {
+    color: #999;
+    font-size: 0.75rem;
+}
+
+.admin-loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}

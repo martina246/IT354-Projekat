@@ -5,27 +5,42 @@ import { useEffect, useState } from "react";
 import { getAllTickets, deleteTicket } from "../api/tickets.api";
 import Navbar from "../components/Navbar";
 import StatusBadge from "../components/StatusBadge";
+import { getAllCategories } from "../api/categories.api";
+import type { Category } from '../types/Category';
+import { getCategoryName } from "../utils/categoryUtils";
 
 function AdminTickets() {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [tickets, setTickets] = useState<Ticket[]>([]);
     const [filteredTickets, setFilteredTickets] = useState<Ticket[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
 
     //filteri
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<string>('all');
     const [dateFilter, setDateFilter] = useState<string>('all');
+    const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
 
     useEffect(() => {
         fetchAllTickets();
+        fetchCategories();
     }, []);
 
     useEffect(() => {
         filterTickets();
-    }, [searchQuery, statusFilter, dateFilter, tickets]);
+    }, [searchQuery, statusFilter, dateFilter, categoryFilter, tickets]);
+
+    const fetchCategories = async () => {
+        try {
+            const allCategories = await getAllCategories();
+            setCategories(allCategories);
+        } catch (error) {
+            console.error('Error fetching categories:', error);
+        }
+    };
 
     const fetchAllTickets = async () => {
         try {
@@ -56,6 +71,10 @@ function AdminTickets() {
 
         if (statusFilter !== 'all') {
             filtered = filtered.filter(ticket => ticket.status === statusFilter);
+        }
+
+        if (categoryFilter !== 'all') {
+            filtered = filtered.filter(ticket => ticket.categoryId === categoryFilter);
         }
 
         if (dateFilter !== 'all') {
@@ -133,6 +152,17 @@ function AdminTickets() {
                         <option value="closed">Closed</option>
                     </select>
 
+                    <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} 
+                    className="admin-filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="">No Category</option>
+                        {categories.map((category) => (
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
+                    </select>
+
                     <select value={dateFilter} onChange={(e) => setDateFilter(e.target.value)} className="admin-filter-select">
                         <option value="all">All Time</option>
                         <option value="today">Today</option>
@@ -149,6 +179,7 @@ function AdminTickets() {
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Description</th>
+                                <th>Category</th>
                                 <th>Status</th>
                                 <th>User ID</th>
                                 <th>Created</th>
@@ -158,7 +189,7 @@ function AdminTickets() {
                         <tbody>
                             {filteredTickets.length === 0 ? (
                                 <tr>
-                                    <td colSpan={7} className="admin-table-empty">
+                                    <td colSpan={8} className="admin-table-empty">
                                         No tickets found
                                     </td>
                                 </tr>
@@ -169,6 +200,11 @@ function AdminTickets() {
                                         <td className="admin-table-title">{ticket.title}</td>
                                         <td className="admin-table-description">
                                             {ticket.description.length > 50 ? `${ticket.description.substring(0, 50)}...` : ticket.description}
+                                        </td>
+                                        <td>
+                                            <span className="admin-category-badge">
+                                                {getCategoryName(ticket.categoryId, categories)}
+                                            </span>
                                         </td>
                                         <td>
                                             <StatusBadge status={ticket.status} variant="small" />
