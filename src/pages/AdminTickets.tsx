@@ -20,7 +20,6 @@ function AdminTickets() {
 
     //filteri
     const [searchQuery, setSearchQuery] = useState('');
-    const [statusFilter, setStatusFilter] = useState<string>('all');
     const [dateFilter, setDateFilter] = useState<string>('all');
     const [categoryFilter, setCategoryFilter] = useState<string>('all');
 
@@ -32,7 +31,7 @@ function AdminTickets() {
 
     useEffect(() => {
         filterTickets();
-    }, [searchQuery, statusFilter, dateFilter, categoryFilter, tickets]);
+    }, [searchQuery, dateFilter, categoryFilter, tickets]);
 
     const fetchCategories = async () => {
         try {
@@ -68,10 +67,6 @@ function AdminTickets() {
                 ticket.id.toLowerCase().includes(searchQuery.toLocaleLowerCase()) ||
                 ticket.userId.toLowerCase().includes(searchQuery.toLocaleLowerCase())
             );
-        }
-
-        if (statusFilter !== 'all') {
-            filtered = filtered.filter(ticket => ticket.status === statusFilter);
         }
 
         if (categoryFilter !== 'all') {
@@ -145,13 +140,6 @@ function AdminTickets() {
                     value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="admin-search-input"
                     />
 
-                    <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} 
-                    className="admin-filter-select">
-                        <option value="all">All Status</option>
-                        <option value="open">Open</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="closed">Closed</option>
-                    </select>
 
                     <select value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)} 
                     className="admin-filter-select">

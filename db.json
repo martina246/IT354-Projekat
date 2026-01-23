@@ -34,9 +34,9 @@
     },
     {
       "id": "f445",
-      "name": "mara",
-      "lastName": "petk",
-      "email": "mara@gmail.com",
+      "name": "Martina",
+      "lastName": "Petkovic",
+      "email": "martina.petkovic220044@gmail.com",
       "password": "456",
       "role": "admin"
     },
@@ -90,9 +90,63 @@
       "userId": "f445",
       "title": "Potrebno odobrenje pristupa",
       "description": "Potrebno odobrenje pristupa na xyz platformu",
-      "status": "open",
+      "status": "in_progress",
       "categoryId": "a0be",
       "createdAt": "2026-01-20T20:38:54.539Z"
+    },
+    {
+      "id": "ca97",
+      "userId": "f445",
+      "title": "SendGrid test",
+      "description": "Testiranje slanja email-ova",
+      "status": "closed",
+      "categoryId": "a0be",
+      "createdAt": "2026-01-23T18:37:57.192Z"
+    },
+    {
+      "id": "f685",
+      "userId": "f445",
+      "title": "SendGrid test 2",
+      "description": "Test 2",
+      "status": "in_progress",
+      "categoryId": "a0be",
+      "createdAt": "2026-01-23T18:38:53.307Z"
+    },
+    {
+      "id": "cf79",
+      "userId": "f445",
+      "title": "Test 3",
+      "description": "SendGrid test broj 3",
+      "status": "in_progress",
+      "categoryId": "e605",
+      "createdAt": "2026-01-23T19:00:41.087Z"
+    },
+    {
+      "id": "bcc1",
+      "userId": "f445",
+      "title": "test 4",
+      "description": "test 4",
+      "status": "open",
+      "categoryId": "e605",
+      "createdAt": "2026-01-23T19:01:04.052Z"
+    },
+    {
+      "id": "b17d",
+      "userId": "f445",
+      "title": "test 5",
+      "description": "test 5",
+      "status": "open",
+      "categoryId": "e605",
+      "createdAt": "2026-01-23T19:03:37.203Z"
+    },
+    {
+      "id": "7953",
+      "userId": "f445",
+      "title": "6",
+      "description": "6",
+      "status": "open",
+      "categoryId": "",
+      "createdAt": "2026-01-23T19:04:34.803Z"
     }
   ],
   "categories": [
@@ -107,6 +161,11 @@
       "name": "Dev",
       "description": "dadada",
       "createdAt": "2026-01-20T19:36:03.835Z"
+    },
+    {
+      "id": "8c8c",
+      "name": "dsad",
+      "createdAt": "2026-01-23T01:46:25.438Z"
     }
   ]
 }

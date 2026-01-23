@@ -14,6 +14,12 @@
     z-index: 1000;
 }
 
+.navbar-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .navbar-header {
     padding: 2rem 1.5rem;
     border-bottom: 1px solid #3a3f4a;
@@ -33,6 +39,7 @@
     padding: 1rem 0;
     margin: 0;
     flex: 1;
+    overflow-y: auto;
 }
 
 .navbar-menu li {
@@ -89,4 +96,34 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.navbar-footer {
+    padding: 1rem 0.75rem;
+    border-top: 1px solid #3a3f4a;
+    margin-top: auto;
+}
+
+.logout-button {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    background: linear-gradient(135deg, #ff4757 0%, #ee5a6f 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+.logout-button:hover {
+    background: linear-gradient(135deg, #ee5a6f 0%, #ff4757 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+.logout-button:active {
+    transform: translateY(0);
 }

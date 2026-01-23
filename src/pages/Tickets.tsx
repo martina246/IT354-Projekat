@@ -20,7 +20,6 @@ function Tickets() {
 
     const [searchQuery, setSearchQuery] = useState('');
     //tekst za pretragu
-    const [statusFilter, setStatusFilter] = useState<string>('all');
     const [dateFilter, setDateFilter] = useState<string>('all');
 
     //modal za novi tiket
@@ -38,7 +37,7 @@ function Tickets() {
 
     useEffect(() => {
         filterTickets();
-    }, [searchQuery, statusFilter, dateFilter, tickets]);
+    }, [searchQuery, dateFilter, tickets]);
 
     const fetchTickets = async (userId: string) => {
         try {
@@ -68,9 +67,6 @@ function Tickets() {
             );
         }
 
-        if (statusFilter !== 'all') {
-            filtered = filtered.filter(ticket => ticket.status === statusFilter);
-        }
 
         //guard uslov
         if (dateFilter !== 'all') {
@@ -176,18 +172,6 @@ function Tickets() {
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="tickets-search-input"
                     />
-
-                    {/* status filter */}
-                    <select
-                        value={statusFilter}
-                        onChange={(e) => setStatusFilter(e.target.value)}
-                        className="tickets-filter-select"
-                    >
-                        <option value="all">All Status</option>
-                        <option value="open">Open</option>
-                        <option value="in_progress">In Progress</option>
-                        <option value="closed">Closed</option>
-                    </select>
 
                     {/* date filter*/}
                     <select

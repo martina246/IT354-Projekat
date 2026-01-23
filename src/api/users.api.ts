@@ -6,6 +6,10 @@ export async function getAllUsers(): Promise<User[]> {
     return apiRequest<User[]>('/users');
 }
 
+export async function getUserById(userId: string): Promise<User> {
+    return apiRequest<User>(`/users/${userId}`);
+}
+
 export async function getTicketsByUser(userId: string): Promise<Ticket[]> {
     return apiRequest<Ticket[]>(`/tickets?userId=${userId}`);
 }
