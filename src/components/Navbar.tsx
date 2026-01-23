@@ -1,9 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
-    const { isAdmin } = useAuth();
+    const { isAdmin, logout, user } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate("/");
+    };
 
     return (
         <aside className="navbar-sidebar">
@@ -50,6 +56,13 @@ function Navbar() {
                         </>
                     )}
                 </ul>
+                {user && (
+                    <div className="navbar-footer">
+                        <button onClick={handleLogout} className="logout-button">
+                            Logout
+                        </button>
+                    </div>
+                )}
             </nav>
         </aside>
     );
