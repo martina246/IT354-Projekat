@@ -117,7 +117,7 @@
       "userId": "f445",
       "title": "Test 3",
       "description": "SendGrid test broj 3",
-      "status": "in_progress",
+      "status": "closed",
       "categoryId": "e605",
       "createdAt": "2026-01-23T19:00:41.087Z"
     },
@@ -144,7 +144,7 @@
       "userId": "f445",
       "title": "6",
       "description": "6",
-      "status": "open",
+      "status": "in_progress",
       "categoryId": "",
       "createdAt": "2026-01-23T19:04:34.803Z"
     }
