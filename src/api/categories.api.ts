@@ -15,10 +15,7 @@ export async function createCategory(categoryData: {
 }): Promise<Category> {
     return apiRequest<Category>('/categories', {
         method: 'POST',
-        body: JSON.stringify({
-            ...categoryData,
-            createdAt: new Date().toISOString(),
-        }),
+        body: JSON.stringify(categoryData),
     });
 }
 
