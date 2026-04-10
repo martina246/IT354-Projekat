@@ -25,7 +25,6 @@ export async function createTicket(ticketData: {
             body: JSON.stringify({
                 ...ticketData,
                 categoryId: ticketData.categoryId || '',
-                createdAt: new Date().toISOString(),
             }),
     });
 
