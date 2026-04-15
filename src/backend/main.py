@@ -5,6 +5,8 @@ from datetime import datetime
 from fastapi import FastAPI, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from .security import hash_password, verify_password
+
 from . import models, schemas
 from .database import Base, engine, get_db
 
@@ -169,7 +171,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
         name=user.name,
         last_name=user.last_name,
         email=user.email,
-        password=user.password,
+        password=hash_password(user.password),
         role=user.role,
     )
 
@@ -188,7 +190,7 @@ def login_user(login_data: schemas.LoginRequest, db: Session = Depends(get_db)):
     if user is None:
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
-    if user.password != login_data.password:
+    if not verify_password(login_data.password, user.password):
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
     return user
