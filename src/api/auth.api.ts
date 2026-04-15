@@ -24,11 +24,8 @@ export async function registerUser(userData: {
     email: string;
     password: string;
 }): Promise<User> {
-    //vraca kreirannog korisnika
     return apiRequest<User>('/users', {
         method: 'POST',
         body: JSON.stringify(userData),
     });
 }
-
-//json-server automatski dodeljuje id
