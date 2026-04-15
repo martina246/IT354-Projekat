@@ -5,9 +5,14 @@ import type { User } from '../types/User';
 //each handling a specific "concern" (functionality or responsibility) like data, logic, or presentation, to reduce complexity, improve modularity, 
 // and make code easier to maintain, understand, and update. Think of it like organizing a library: books (data) aren't mixed with the librarian's tasks (logic) or the building's decor (style)
 
-//uzimanje svih korisnika za login proveru
-export async function getAllUsers() : Promise<User []> {
-    return apiRequest<User []>('/users');
+export async function loginUser(credentials: {
+    email: string;
+    password: string;
+}) : Promise<User> {
+    return apiRequest<User>('/auth/login', {
+        method: 'POST',
+        body: JSON.stringify(credentials),
+    });
 }
 
 
