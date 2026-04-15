@@ -7,7 +7,7 @@ class User(Base):
     name = Column(String, index=True)
     last_name = Column(String, index=True)
     email = Column(String, unique=True, index=True)
-    password = Column(String, index=True)
+    password = Column(String, index=True) #hash
     role = Column(String, index=True)
 
 class Ticket(Base):
