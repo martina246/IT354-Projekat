@@ -179,3 +179,16 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
     return new_user
 
+
+
+@app.post("/auth/login", response_model=schemas.UserResponse)
+def login_user(login_data: schemas.LoginRequest, db: Session = Depends(get_db)):
+    user = db.query(models.User).filter(models.User.email == login_data.email).first()
+
+    if user is None:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    if user.password != login_data.password:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+
+    return user
