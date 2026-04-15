@@ -2,7 +2,7 @@
 
 //centralna funkcija za slanje http zahteva
 
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 export async function apiRequest<T>(
     endpoint: string, // /tickets, /users...
@@ -24,8 +24,23 @@ export async function apiRequest<T>(
 
     //response.ok je true za status kodove 200-299
     if (!response.ok) {
-        throw new Error(`API Error: ${response.statusText}`);
+        let errorMessage = `API Error: ${response.status} ${response.statusText}`;
+
+        try {
+            const errorData = await response.json();
+            if (errorData?.detail) {
+                errorMessage = Array.isArray(errorData.detail) ? JSON.stringify(errorData.detail) : errorData.detail;
+            }
+        } catch {
+            //ignore errors
+        }
+
+        throw new Error(errorMessage);
     }
 
-    return response.json();
+    if (response.status === 204) {
+        return undefined as T;
+    }
+
+    return response.json() as Promise<T>;
 }

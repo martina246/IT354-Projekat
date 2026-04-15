@@ -8,9 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "json-server --watch db.json --port 3001",
     "email-server": "node server.js",
-    "dev:all": "concurrently \"npm run server\" \"npm run email-server\" \"npm run dev\""
+    "dev:all": "concurrently \"npm run email-server\" \"npm run dev\""
   },
   "dependencies": {
     "concurrently": "^9.2.1",

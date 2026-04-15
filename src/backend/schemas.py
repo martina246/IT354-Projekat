@@ -77,14 +77,3 @@ class LoginRequest(BaseModel):
     email: str
     password: str
 
-class AuthUserResponse(BaseModel):
-    id: str
-    name: str
-    last_name: str = Field(alias="lastName")
-    email: str
-    role: Literal["user", "admin"] = "user"
-
-    model_config = ConfigDict(
-        populate_by_name=True, #omogucava koriscenje i lastName i last_name
-        from_attributes=True, #Pydantic moze da uzme objekte iz baze i pretvori ih u JSON
-    )

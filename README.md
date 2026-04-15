@@ -1,66 +1,86 @@
 # Help Desk Ticketing App
 
-A React + TypeScript web application for managing help desk tickets with user and admin roles. Data is stored locally using json-server.
+A React + TypeScript web application for managing help desk tickets with user and admin roles. The frontend runs with Vite, while the backend uses FastAPI with SQLite for local persistence.
 
 ## Features
-- User authentication (register/login) with role-based access (user/admin)
+- User registration and backend-driven login
+- Role-based behavior for user and admin accounts
 - Ticket creation, viewing, updating, and deletion
-- Ticket status management (open, in progress, closed)
+- Ticket status management
 - Categories CRUD and category assignment to tickets
 - Admin dashboard with ticket list and filters
-- Admin user management (view users and their tickets)
+- Optional email notifications through the Node email proxy
 
 ## Tech Stack
 - React + TypeScript
 - Vite
-- react-router-dom for client-side routing
-- json-server for local API
+- FastAPI
+- SQLite
+- SQLAlchemy
+- react-router-dom
 
 ## Project Structure
 - `src/pages` - page-level views
 - `src/components` - reusable UI components
-- `src/api` - API request helpers
+- `src/api` - frontend API request helpers
 - `src/types` - shared TypeScript types
-- `src/context` - auth context and guards
-- `src/utils` - small shared utilities
+- `src/context` - auth context and route guards
+- `src/backend` - FastAPI app, database setup, schemas, and security helpers
+- `server.js` - optional email proxy server
 
 ## Getting Started
 
-### 1) Install dependencies
+### 1) Install frontend dependencies
 ```bash
 npm install
 ```
 
-### 2) Start the API server
-```bash
-npm run server
-```
-This serves `db.json` at `http://localhost:3001`.
+### 2) Install backend dependencies
+Create and activate your Python virtual environment, then install the backend requirements:
 
-### 3) Start the frontend
+```bash
+pip install -r requirements.txt
+```
+
+### 3) Start the FastAPI backend
+From the project root:
+
+```bash
+PYTHONPATH=. uvicorn src.backend.main:app --reload --port 8000
+```
+
+The API will be available at `http://localhost:8000` and Swagger UI at `http://localhost:8000/docs`.
+
+### 4) Start the frontend
 ```bash
 npm run dev
 ```
-Open the app at the URL printed by Vite (usually `http://localhost:5173`).
+
+Open the app at the URL printed by Vite, usually `http://localhost:5173`.
+
+### 5) Optional: start the email server
+If you want ticket email notifications enabled:
+
+```bash
+npm run email-server
+```
+
+This starts the email proxy at `http://localhost:3002`.
 
 ## Test Accounts
-These accounts are pre-seeded in `db.json`:
-
-- **Admin**
-  - Email: `mara@gmail.com`
-  - Password: `456`
-
-- **User**
-  - Email: `mart@gmail.com`
-  - Password: `123`
+Users are no longer pre-seeded from a JSON file. Create test accounts through:
+- the registration page for regular users
+- Swagger at `http://localhost:8000/docs` for custom roles such as `admin`
 
 ## Scripts
 - `npm run dev` - start the frontend
-- `npm run server` - start json-server
+- `npm run email-server` - start the optional email proxy server
+- `npm run dev:all` - start the frontend and optional email proxy together
 - `npm run build` - build the frontend
-- `npm run preview` - preview the production build
+- `npm run preview` - preview the frontend production build
 - `npm run lint` - run ESLint
 
 ## Notes
+- Frontend API requests use `VITE_API_URL` from `src/.env`, falling back to `http://localhost:8000`.
 - Tickets include a `categoryId` field; categories are managed in the admin panel.
-- All data lives in `db.json` and resets if you replace that file.
+- User passwords are stored hashed in SQLite.
